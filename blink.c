@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   blink.c
  * Author: viitanenm
  *
@@ -11,12 +11,15 @@
 
 #define DELAY 4000
 
+// control the DS
 #define DS_low()  LATB &=~0x8000
 #define DS_high()  LATB |=0x8000
 
+// control the ST_CP
 #define ST_CP_low() LATB &=~0x4000
 #define ST_CP_high() LATB |=0x4000
 
+// control the SH_CP
 #define SH_CP_low() LATB &=~0x2000
 #define SH_CP_high() LATB |=0x2000
 
@@ -25,9 +28,6 @@
 void doStep(unsigned int pattern);
 void setLEDs(unsigned int pattern);
 
-/*
- * 
- */
 int main(int argc, char** argv) {
 
     TRISB = 0x0000;
@@ -55,7 +55,7 @@ void setLEDs(unsigned int pattern) {
     ST_CP_low();
     SH_CP_low();
     int i;
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < 8; i++) {
         if (CHECK_BIT(pattern, i))
             DS_high();
         else
