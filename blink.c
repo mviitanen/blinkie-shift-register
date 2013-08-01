@@ -1,25 +1,15 @@
-/*
- * File:   blink.c
- * Author: viitanenm
- *
- * Created on April 5, 2013, 11:45 AM
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <p24FJ64GB002.h>
 
 #define DELAY 4000
 
-// control the DS
 #define DS_low()  LATB &=~0x8000
 #define DS_high()  LATB |=0x8000
 
-// control the ST_CP
 #define ST_CP_low() LATB &=~0x4000
 #define ST_CP_high() LATB |=0x4000
 
-// control the SH_CP
 #define SH_CP_low() LATB &=~0x2000
 #define SH_CP_high() LATB |=0x2000
 
@@ -37,9 +27,9 @@ int main(int argc, char** argv) {
     LATB = 0x0000;
     doStep(0x00);
     while (1) {
-        doStep(0x2000);
-        doStep(0x8000);
-        doStep(0x0080);
+        doStep(0x20);
+        doStep(0x40);
+        doStep(0x80);
     } // main loop
     return (EXIT_SUCCESS);
 }
